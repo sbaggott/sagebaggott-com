@@ -1,0 +1,114 @@
+---
+interface Service {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const services: Service[] = [
+  {
+    icon: '/images/icon-drums.png',
+    title: 'Drummer & Percussionist',
+    description:
+      'Versatile in Cuban popular/folkloric music, Flamenco, jazz, and classical.',
+  },
+  {
+    icon: '/images/icon-session.png',
+    title: 'Session Musician',
+    description:
+      'Available for recording with various drum kits and Latin percussion instruments.',
+  },
+  {
+    icon: '/images/icon-congas.png',
+    title: 'Private Lessons',
+    description:
+      'Teaching drumset and percussion to kids and adults.',
+  },
+  {
+    icon: '/images/icon-compose.png',
+    title: 'Composing & Arranging',
+    description:
+      'Film/commercial work via Spiky Blimp; orchestral composition.',
+  },
+];
+---
+
+<section id="services" class="services">
+  <div class="container">
+    <h2 class="section-title">Services</h2>
+    <div class="services-grid">
+      {services.map(service => (
+        <div class="service-card">
+          <div class="service-icon">
+            <img src={service.icon} alt={service.title} loading="lazy" />
+          </div>
+          <h3>{service.title}</h3>
+          <p>{service.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background: var(--bg-light);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .service-card {
+    padding: 40px 20px;
+    background: var(--bg-card);
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .service-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .service-icon img {
+    max-width: 100%;
+    max-height: 100%;
+    filter: brightness(0) invert(1);
+  }
+
+  .service-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: var(--accent);
+  }
+
+  .service-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 768px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

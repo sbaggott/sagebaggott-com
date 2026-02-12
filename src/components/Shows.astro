@@ -1,0 +1,121 @@
+---
+interface Show {
+  event: string;
+  venue: string;
+  date: string;
+}
+
+const shows: Show[] = [
+  {
+    event: 'Tuba Xmas/Ellington Nutcracker',
+    venue: 'First Unitarian Church, Oakland',
+    date: '12/14/2025',
+  },
+  {
+    event: 'Vardari',
+    venue: 'Cheeseboard Pizza, Berkeley',
+    date: '12/18/2025',
+  },
+  {
+    event: 'Vardari',
+    venue: 'Piano Palace, Half Moon Bay',
+    date: '5/17/2026',
+  },
+];
+---
+
+<section id="shows" class="shows">
+  <div class="container">
+    <h2 class="section-title">Upcoming Shows</h2>
+    <div class="shows-table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Venue</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {shows.map(show => (
+            <tr>
+              <td data-label="Event">{show.event}</td>
+              <td data-label="Venue">{show.venue}</td>
+              <td data-label="Date">{show.date}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .shows-table-wrapper {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 16px 20px;
+    text-align: left;
+  }
+
+  th {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  td {
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.95rem;
+  }
+
+  tr:hover td {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  @media (max-width: 600px) {
+    table, thead, tbody, tr, th, td {
+      display: block;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tr {
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 15px;
+    }
+
+    td {
+      padding: 6px 0;
+      border-bottom: none;
+      position: relative;
+      padding-left: 90px;
+    }
+
+    td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+  }
+</style>

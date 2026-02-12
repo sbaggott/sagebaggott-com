@@ -1,0 +1,59 @@
+---
+import ProjectCard from './ProjectCard.astro';
+
+interface Project {
+  image: string;
+  title: string;
+  description: string;
+}
+
+const projects: Project[] = [
+  {
+    image: '/images/awesome-orchestra.webp',
+    title: 'Awesöme Orchestra',
+    description:
+      'Free reading sessions about once a month featuring everything from Björk to Stravinsky, performed all over the San Francisco Bay Area.',
+  },
+  {
+    image: '/images/vardari.jpg',
+    title: 'Vardari',
+    description:
+      'Exploration of shared Balkan melodies with original arrangements for a world-chamber ensemble, exploring Balkan music through multiple languages.',
+  },
+  {
+    image: '/images/circus-beat-brass.jpg',
+    title: 'Circus Beat Brass',
+    description:
+      'Wild mix of Rock, Jazz, Classical, and everything in-between featuring Paul Allen (French Horn), Mike Stokowski (Trumpet), Jason Holiday (Trumpet), David Hemphill (Trombone), Gary Hsueh (Tuba), and Sage Baggott (Drums).',
+  },
+];
+---
+
+<section id="projects" class="projects">
+  <div class="container">
+    <h2 class="section-title">Current Projects</h2>
+    <div class="projects-grid">
+      {projects.map(project => (
+        <ProjectCard
+          image={project.image}
+          title={project.title}
+          description={project.description}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  @media (min-width: 768px) {
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

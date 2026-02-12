@@ -1,0 +1,70 @@
+---
+
+---
+
+<section id="about" class="about">
+  <div class="container">
+    <h2 class="section-title">About</h2>
+    <div class="about-grid">
+      <div class="about-image">
+        <img src="/images/about-sage.jpg" alt="Sage Baggott" loading="lazy" />
+      </div>
+      <div class="about-text">
+        <p>
+          Sage is a third-generation drummer and composer from the Bay Area and
+          Austin, Texas. Raised in nightclubs observing diverse musical styles
+          from Western Swing to jazz and rock, he studied drums and Latin
+          percussion from an early age.
+        </p>
+        <p>
+          He has performed with organizations including Orquesta La Moderna
+          Tradici&oacute;n, Los Cenzontles, David Hidalgo, Taj Mahal, QBA, and
+          Awes&ouml;me Orchestra Collective.
+        </p>
+        <p>
+          Currently, he composes for film and commercial projects as co-owner of
+          Spiky Blimp, serves as co-percussion ambassador for Awes&ouml;me
+          Orchestra Collective, and teaches private lessons from his Oakland home
+          studio.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--bg-light);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .about-image img {
+    border-radius: 4px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .about-text p {
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .about-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr 1.5fr;
+    }
+  }
+</style>
