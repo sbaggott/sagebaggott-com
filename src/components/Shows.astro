@@ -1,27 +1,5 @@
 ---
-interface Show {
-  event: string;
-  venue: string;
-  date: string;
-}
-
-const shows: Show[] = [
-  {
-    event: 'Tuba Xmas/Ellington Nutcracker',
-    venue: 'First Unitarian Church, Oakland',
-    date: '12/14/2025',
-  },
-  {
-    event: 'Vardari',
-    venue: 'Cheeseboard Pizza, Berkeley',
-    date: '12/18/2025',
-  },
-  {
-    event: 'Vardari',
-    venue: 'Piano Palace, Half Moon Bay',
-    date: '5/17/2026',
-  },
-];
+import shows from '../data/shows.json';
 ---
 
 <section id="shows" class="shows">
@@ -39,7 +17,13 @@ const shows: Show[] = [
         <tbody>
           {shows.map(show => (
             <tr>
-              <td data-label="Event">{show.event}</td>
+              <td data-label="Event">
+                {show.url ? (
+                  <a href={show.url} target="_blank" rel="noopener noreferrer">{show.event}</a>
+                ) : (
+                  show.event
+                )}
+              </td>
               <td data-label="Venue">{show.venue}</td>
               <td data-label="Date">{show.date}</td>
             </tr>

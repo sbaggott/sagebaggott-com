@@ -5,8 +5,14 @@
 <section class="hero">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <h1>Sage Baggott</h1>
-    <p class="tagline">Drummer / Percussionist / Composer</p>
+    <h1>Sage<br />Baggott</h1>
+    <p class="tagline">
+        Drummer /
+        <br />
+        Percussionist /
+        <br />
+        Composer
+    </p>
   </div>
 </section>
 
@@ -17,8 +23,8 @@
     min-height: 500px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: url('/images/hero-bg.jpg') center center / cover no-repeat;
+    justify-content: left;
+    background: url('/images/hero-bg.jpg') top center / cover no-repeat;
   }
 
   .hero-overlay {
@@ -29,23 +35,24 @@
 
   .hero-content {
     position: relative;
-    text-align: center;
+    text-align: left;
     z-index: 1;
-    padding: 0 20px;
+    padding: 0 20px 0 10%;
   }
 
   .hero-content h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 900;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 6px;
+    letter-spacing: 2px;
     margin-bottom: 15px;
+    line-height: 0.73;
+    color: var(--accent);
   }
 
   .tagline {
-    font-size: clamp(1rem, 2.5vw, 1.4rem);
-    color: var(--text-muted);
-    letter-spacing: 3px;
+    font-size: clamp(2rem, 2.5vw, 1.4rem);
     text-transform: uppercase;
+    line-height: 1;
   }
 </style>

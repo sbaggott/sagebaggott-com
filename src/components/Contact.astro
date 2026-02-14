@@ -6,22 +6,38 @@
   <div class="container">
     <h2 class="section-title">Contact</h2>
     <p class="contact-intro">Sign up for news about upcoming shows (or just say hi)</p>
-    <form class="contact-form" action="#" method="POST">
+    <form
+      class="contact-form"
+      action="https://sagebaggott.us7.list-manage.com/subscribe/post?u=e763e4406fd844f54fc6a71e1&amp;id=d290a84b43"
+      method="POST"
+      id="mc-form"
+    >
       <div class="form-row">
         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required />
+          <label for="mce-FNAME">First name <span class="required">*</span></label>
+          <input type="text" id="mce-FNAME" name="FNAME" required />
         </div>
         <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
+          <label for="mce-LNAME">Last name</label>
+          <input type="text" id="mce-LNAME" name="LNAME" />
         </div>
       </div>
       <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5"></textarea>
+        <label for="mce-EMAIL">Email <span class="required">*</span></label>
+        <input type="email" id="mce-EMAIL" name="EMAIL" required />
       </div>
-      <button type="submit">Send</button>
+      <div class="form-group">
+        <label for="mce-MESSAGE">Message</label>
+        <textarea id="mce-MESSAGE" name="MESSAGE" rows="5"></textarea>
+      </div>
+      <!-- Tag: "gigs" -->
+      <input type="hidden" name="tags" value="3642684" />
+      <!-- Bot signup protection -->
+      <div style="position: absolute; left: -5000px;" aria-hidden="true">
+        <input type="text" name="b_e763e4406fd844f54fc6a71e1_d290a84b43" tabindex="-1" value="" />
+      </div>
+      <button type="submit">Subscribe</button>
+      <p class="form-status" id="form-status"></p>
     </form>
   </div>
 </section>
@@ -61,6 +77,11 @@
     letter-spacing: 1px;
     color: var(--text-muted);
     margin-bottom: 8px;
+  }
+
+  .required {
+    color: var(--accent);
+    font-size: 1.2rem;
   }
 
   input, textarea {
@@ -104,9 +125,50 @@
     color: var(--text);
   }
 
+  .form-status {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 0.95rem;
+  }
+
+  .form-status.success {
+    color: #4caf50;
+  }
+
+  .form-status.error {
+    color: #f44336;
+  }
+
   @media (min-width: 768px) {
     .form-row {
       grid-template-columns: 1fr 1fr;
     }
   }
 </style>
+
+<script>
+  const form = document.getElementById('mc-form') as HTMLFormElement;
+  const status = document.getElementById('form-status')!;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = 'Subscribing...';
+    status.className = 'form-status';
+
+    const data = new FormData(form);
+    const params = new URLSearchParams(data as any).toString();
+
+    // Use Mailchimp's JSONP endpoint to stay on-page
+    const url = form.action.replace('/post?', '/post-json?') + '&' + params + '&c=callback';
+
+    try {
+      const response = await fetch(url, { mode: 'no-cors' });
+      status.textContent = 'Thanks for subscribing!';
+      status.className = 'form-status success';
+      form.reset();
+    } catch {
+      status.textContent = 'Something went wrong. Please try again.';
+      status.className = 'form-status error';
+    }
+  });
+</script>

@@ -10,7 +10,6 @@ const navLinks = [
 
 <header class="header">
   <div class="header-inner container">
-    <a href="/" class="logo">Sage Baggott</a>
     <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
       <span></span>
       <span></span>
@@ -54,9 +53,7 @@ const navLinks = [
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(21, 21, 21, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: "transparent";
     height: var(--header-height);
   }
 
@@ -65,20 +62,7 @@ const navLinks = [
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    padding: 0 20px;
-  }
-
-  .logo {
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--text);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-
-  .logo:hover {
-    color: var(--accent);
+    padding: 0;
   }
 
   .nav ul {
@@ -89,7 +73,8 @@ const navLinks = [
   .nav a {
     color: var(--text);
     font-family: var(--font-heading);
-    font-size: 0.9rem;
+    font-size: 1rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: color 0.3s ease;
