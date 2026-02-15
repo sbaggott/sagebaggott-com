@@ -25,6 +25,7 @@
     align-items: center;
     justify-content: left;
     background: url('/images/hero-bg.jpg') top center / cover no-repeat;
+    transition: all 0.3s ease;
   }
 
   .hero-overlay {
@@ -54,5 +55,11 @@
     font-size: clamp(2rem, 2.5vw, 1.4rem);
     text-transform: uppercase;
     line-height: 1;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      height: 70vh;
+    }
   }
 </style>
