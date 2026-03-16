@@ -30,7 +30,7 @@ html {
 }
 
 body {
-  font-family: var(--font-body);
+  font-family: var(--font-body), serif;
   background-color: var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -39,7 +39,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), serif;
   font-weight: 700;
   line-height: 1.2;
 }

@@ -1,0 +1,251 @@
+---
+import '../styles/global.css';
+
+interface Project {
+  src: string;
+  title: string;
+  description: string;
+}
+
+interface Category {
+  name: string;
+  description: string;
+  projects: Project[];
+}
+
+const categories: Category[] = [
+  {
+    name: 'Boombox',
+    description: 'Frontend work on the Boombox web app',
+    projects: [
+      { src: '/images/portfolio/Boombox-1.jpg', title: 'File browser', description: '' },
+      { src: '/images/portfolio/Boombox-2.jpg', title: 'Playlist page', description: '' },
+      { src: '/images/portfolio/Boombox-3.jpg', title: 'Track detail page', description: '' },
+    ],
+  },
+  {
+    name: 'Dubsy',
+    description: 'Engineering and design work on the Dubsy overdubbing app for Boombox',
+    projects: [
+      { src: '/images/portfolio/Dubsy-1.png', title: 'Stem splitting', description: '' },
+      { src: '/images/portfolio/Dubsy-2.png', title: 'Prepare to record', description: '' },
+      { src: '/images/portfolio/Dubsy-3.jpg', title: 'Recording overdub', description: '' },
+      { src: '/images/portfolio/Dubsy-4.jpg', title: 'Playback and editing', description: '' },
+    ],
+  },
+  {
+    name: 'Lookout',
+    description: 'Frontend engineering work on the Lookout Enterprise Dashboard web app',
+    projects: [
+      {src: '/images/portfolio/Lookout-dashboard-1.jpg', title: 'Dashboard main page', description: ''},
+      {src: '/images/portfolio/Lookout-dashboard-2.jpg', title: 'Dashboard apps page', description: ''},
+      {src: '/images/portfolio/Lookout-dashboard-3.jpg', title: 'Dashboard protections page', description: ''},
+    ],
+  },
+  {
+    name: 'Karl Petzke, Commercial Photography',
+    description: 'Custom website development for Karl Petzke, a commercial photographer based in San Francisco',
+    projects: [
+      { src: '/images/portfolio/KP_Website_1.jpg', title: 'Homepage', description: '' },
+      { src: '/images/portfolio/KP_Website_2.jpg', title: 'Image gallery', description: '' },
+    ],
+  },
+  {
+    name: 'Dig Wines',
+    description: 'Custom website development for Dig Wines, based in Dogpatch in San Francisco',
+    projects: [
+      { src: '/images/portfolio/Dig-2.jpg', title: 'Contact page', description: '' },
+      { src: '/images/portfolio/Dig-3.jpg', title: 'Wine detail page', description: '' },
+    ],
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Portfolio for Sage Baggott, Frontend and Design Engineer"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <title>Sage Baggott - Frontend & Design Engineer</title>
+</head>
+<body>
+<main>
+  <section class="portfolio">
+    <div class="container">
+      <h1 class="section-title">Sage Baggott, Frontend & Design Engineer</h1>
+      {categories.map((cat) => (
+        <div class="category">
+          <h2 class="category-title">{cat.name}</h2>
+          <p class="category-description">{cat.description}</p>
+          <div
+            class="category-grid"
+            style={`--col-count: ${cat.projects.length}`}
+          >
+            {cat.projects.map((project) => (
+              <article class="project-card">
+                <div class="project-image" data-lightbox={project.src} data-alt={project.title} data-category={cat.name}>
+                  <img src={project.src} alt={project.title} loading="lazy" />
+                </div>
+                <div class="project-info">
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+  <div id="lightbox" aria-hidden="true">
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+</main>
+</body>
+</html>
+
+<style>
+  .portfolio {
+    padding: 80px 20px;
+    background-color: var(--bg);
+  }
+
+  .category {
+    margin-bottom: 60px;
+  }
+
+  .category-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .category-description {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--col-count), 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .category-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 540px) {
+    .category-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .project-card {
+    background: var(--bg-card);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .project-image {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .project-image[data-category="Dubsy"] {
+    aspect-ratio: 10 / 16;
+  }
+
+  .project-card:hover .project-image img {
+    transform: scale(1.05);
+  }
+
+  .project-info {
+    padding: 24px;
+  }
+
+  .project-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .project-info p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .project-image {
+    cursor: zoom-in;
+  }
+
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  #lightbox-img {
+    width: 80%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  const lightbox = document.getElementById('lightbox') as HTMLElement;
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+
+  function openLightbox(src: string, alt: string) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightbox.style.display = 'flex';
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-lightbox]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openLightbox(el.dataset.lightbox!, el.dataset.alt ?? '');
+    });
+  });
+
+  lightbox.addEventListener('click', closeLightbox);
+</script>
