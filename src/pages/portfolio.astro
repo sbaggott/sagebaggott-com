@@ -54,8 +54,15 @@ const categories: Category[] = [
     name: 'Dig Wines',
     description: 'Custom website development for Dig Wines, based in Dogpatch in San Francisco',
     projects: [
-      { src: '/images/portfolio/Dig-2.jpg', title: 'Contact page', description: '' },
-      { src: '/images/portfolio/Dig-3.jpg', title: 'Wine detail page', description: '' },
+      {src: '/images/portfolio/Dig-2.jpg', title: 'Contact page', description: ''},
+      {src: '/images/portfolio/Dig-3.jpg', title: 'Wine detail page', description: ''},
+    ],
+  },
+  {
+    name: 'Drum flyer',
+    description: 'Print flyer for drum lessons given by me',
+    projects: [
+      {src: '/images/portfolio/Drum-Lesson-Flyer.png', title: 'Drum lesson flyer', description: ''},
     ],
   },
 ];
@@ -82,10 +89,11 @@ const categories: Category[] = [
           <div
             class="category-grid"
             style={`--col-count: ${cat.projects.length}`}
+            data-category={cat.name}
           >
             {cat.projects.map((project) => (
               <article class="project-card">
-                <div class="project-image" data-lightbox={project.src} data-alt={project.title} data-category={cat.name}>
+                <div class="project-image" data-lightbox={project.src} data-alt={project.title}>
                   <img src={project.src} alt={project.title} loading="lazy" />
                 </div>
                 <div class="project-info">
@@ -138,6 +146,18 @@ const categories: Category[] = [
     gap: 20px;
   }
 
+  .category-grid[data-category="Dubsy"] .project-image {
+      aspect-ratio: 9 / 16;
+  }
+
+  .category-grid[data-category="Drum flyer"] .project-image {
+    aspect-ratio: 12 / 16;
+  }
+
+  .category-grid[data-category="Drum flyer"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   @media (max-width: 900px) {
     .category-grid {
       grid-template-columns: repeat(2, 1fr);
@@ -171,10 +191,6 @@ const categories: Category[] = [
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
-  }
-
-  .project-image[data-category="Dubsy"] {
-    aspect-ratio: 10 / 16;
   }
 
   .project-card:hover .project-image img {
