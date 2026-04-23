@@ -10,9 +10,18 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
-    "astro": "^5.17.1"
+    "@sanity/astro": "^3.3.1",
+    "@sanity/client": "^7.21.0",
+    "astro": "^5.17.1",
+    "astro-portabletext": "^0.13.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-is": "^19.2.5",
+    "sanity": "^5.22.0",
+    "styled-components": "^6.4.1"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.2.4",
     "@types/node": "^25.2.3"
   }
 }

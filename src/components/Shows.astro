@@ -1,5 +1,18 @@
 ---
-import shows from '../data/shows.json';
+import type {SanityDocument} from "@sanity/client";
+import {sanityClient} from "sanity:client";
+
+const formatDate = (date: string) => {
+  const showDate = new Date(date);
+  return showDate.toLocaleDateString(navigator.language, { month: 'numeric', day: 'numeric', year: '2-digit' });
+}
+
+const POSTS_QUERY = `*[
+  _type == "show"
+  && defined(slug.current)
+]|order(date asc)[0...12]{_id, title, event, venue, date, time, url, slug, publishedAt}`;
+
+const shows = await sanityClient.fetch<SanityDocument[]>(POSTS_QUERY);
 ---
 
 <section id="shows" class="shows">
@@ -25,7 +38,7 @@ import shows from '../data/shows.json';
                 )}
               </td>
               <td data-label="Venue">{show.venue}</td>
-              <td data-label="Date">{show.date}</td>
+              <td data-label="Date">{`${formatDate(show.date)}, ${show.time}`}</td>
             </tr>
           ))}
         </tbody>

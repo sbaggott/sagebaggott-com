@@ -4,7 +4,9 @@
   "exclude": ["dist"],
   "compilerOptions": {
     "types": [
-      "./worker-configuration.d.ts", "node"
+      "./worker-configuration.d.ts",
+      "node",
+      "@sanity/astro/module"
     ]
   }
 }
