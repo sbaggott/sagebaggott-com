@@ -4,7 +4,6 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "mkdir -p dist/_worker.js && touch dist/_worker.js/index.js",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

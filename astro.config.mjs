@@ -8,7 +8,8 @@ import sanity from '@sanity/astro';
 export default defineConfig({
   output: 'server',
   adapter: cloudflare({
-    sessionKVBindingName: 'SAGE_SESSIONS', // or any unique name
+    sessionKVBindingName: 'SAGE_SESSIONS',
+    configPath: 'wrangler.build.jsonc',
   }),
   vite: {
     plugins: [tailwindcss()],
