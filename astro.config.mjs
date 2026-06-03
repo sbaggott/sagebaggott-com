@@ -3,14 +3,17 @@ import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import tailwindcss from "@tailwindcss/vite";
 import sanity from '@sanity/astro';
+import { sessionDrivers } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
   adapter: cloudflare({
-    sessionKVBindingName: 'SAGE_SESSIONS',
     configPath: 'wrangler.build.jsonc',
   }),
+  session: {
+    driver: sessionDrivers.lruCache(),
+  },
   vite: {
     plugins: [tailwindcss()],
   },

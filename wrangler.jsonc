@@ -8,11 +8,5 @@
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS"
-  },
-  "kv_namespaces": [
-    {
-      "binding": "SAGE_SESSIONS",
-      "id": "090c3716e2174ee7adb13b6bfa414063"
-    }
-  ]
+  }
 }
