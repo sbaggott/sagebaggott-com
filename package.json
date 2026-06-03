@@ -9,10 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.12",
+    "@astrojs/cloudflare": "13.1.10",
     "@sanity/astro": "^3.3.1",
     "@sanity/client": "^7.21.0",
-    "astro": "^5.17.1",
+    "astro": "6.1.10",
     "astro-portabletext": "^0.13.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
