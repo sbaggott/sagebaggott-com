@@ -87,3 +87,56 @@ section {
   text-align: center;
   position: relative;
 }
+
+#mc_embed_shell {
+  display: flex;
+  justify-content: center;
+}
+
+#mc_embed_signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #1a1a1a;
+  /*false;*/
+  clear: left;
+  font: 14px Helvetica, Arial, sans-serif;
+  width: 600px;
+}
+
+#mc_embed_signup form {
+  width: 100% !important;
+}
+
+#mc_embed_signup input {
+  background: #1a1a1a;
+  border: 1px solid #535353 !important;
+  font-size: 1rem;
+}
+
+#mc_embed_signup textarea {
+  background: #1a1a1a;
+  border: 1px solid #535353 !important;
+  font-size: 1rem;
+}
+
+#mc_embed_signup #mc-embedded-subscribe {
+  background: #F9A926;
+  color: #000000;
+  border: none !important;
+}
+
+@media screen and (max-width: 400px) {
+  #mc_embed_signup .foot {
+    grid-template-columns: 1fr 1fr !important;
+    width: 100% !important;
+  }
+}
+
+.required[data-astro-cid-xmivup5a] {
+  color: #FFFFFF !important;
+}
+
+#mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error {
+  background-color: #1a1a1a !important;
+}
