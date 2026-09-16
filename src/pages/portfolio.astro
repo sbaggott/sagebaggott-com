@@ -1,271 +1,163 @@
 ---
-import '../styles/global.css';
-
-interface Project {
-  src: string;
-  title: string;
-  description: string;
-}
-
-interface Category {
-  name: string;
-  description: string;
-  projects: Project[];
-}
-
-const categories: Category[] = [
-  {
-    name: 'Boombox',
-    description: 'Frontend work on the Boombox web app',
-    projects: [
-      { src: '/images/portfolio/Boombox-1.jpg', title: 'File browser', description: '' },
-      { src: '/images/portfolio/Boombox-2.jpg', title: 'Playlist page', description: '' },
-      { src: '/images/portfolio/Boombox-3.jpg', title: 'Track detail page', description: '' },
-    ],
-  },
-  {
-    name: 'Dubsy',
-    description: 'Engineering and design work on the Dubsy overdubbing app for Boombox',
-    projects: [
-      { src: '/images/portfolio/Dubsy-1.png', title: 'Stem splitting', description: '' },
-      { src: '/images/portfolio/Dubsy-2.png', title: 'Prepare to record', description: '' },
-      { src: '/images/portfolio/Dubsy-3.jpg', title: 'Recording overdub', description: '' },
-      { src: '/images/portfolio/Dubsy-4.jpg', title: 'Playback and editing', description: '' },
-    ],
-  },
-  {
-    name: 'Lookout',
-    description: 'Frontend engineering work on the Lookout Enterprise Dashboard web app',
-    projects: [
-      {src: '/images/portfolio/Lookout-dashboard-1.jpg', title: 'Dashboard main page', description: ''},
-      {src: '/images/portfolio/Lookout-dashboard-2.jpg', title: 'Dashboard apps page', description: ''},
-      {src: '/images/portfolio/Lookout-dashboard-3.jpg', title: 'Dashboard protections page', description: ''},
-    ],
-  },
-  {
-    name: 'Karl Petzke, Commercial Photography',
-    description: 'Custom website development for Karl Petzke, a commercial photographer based in San Francisco',
-    projects: [
-      { src: '/images/portfolio/KP_Website_1.jpg', title: 'Homepage', description: '' },
-      { src: '/images/portfolio/KP_Website_2.jpg', title: 'Image gallery', description: '' },
-    ],
-  },
-  {
-    name: 'Dig Wines',
-    description: 'Custom website development for Dig Wines, based in Dogpatch in San Francisco',
-    projects: [
-      {src: '/images/portfolio/Dig-2.jpg', title: 'Contact page', description: ''},
-      {src: '/images/portfolio/Dig-3.jpg', title: 'Wine detail page', description: ''},
-    ],
-  },
-  {
-    name: 'Drum flyer',
-    description: 'Print flyer for drum lessons given by me',
-    projects: [
-      {src: '/images/portfolio/Drum-Lesson-Flyer.png', title: 'Drum lesson flyer', description: ''},
-    ],
-  },
-];
+import '../styles/portfolio-review.css';
 ---
 
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Portfolio for Sage Baggott, Frontend and Design Engineer"/>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-    <title>Sage Baggott - Frontend & Design Engineer</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Work — Design Engineer, Sage Baggott</title>
 </head>
 <body>
-<main>
-  <section class="portfolio">
-    <div class="container">
-      <h1 class="section-title">Sage Baggott, Frontend & Design Engineer</h1>
-      {categories.map((cat) => (
-        <div class="category">
-          <h2 class="category-title">{cat.name}</h2>
-          <p class="category-description">{cat.description}</p>
-          <div
-            class="category-grid"
-            style={`--col-count: ${cat.projects.length}`}
-            data-category={cat.name}
-          >
-            {cat.projects.map((project) => (
-              <article class="project-card">
-                <div class="project-image" data-lightbox={project.src} data-alt={project.title}>
-                  <img src={project.src} alt={project.title} loading="lazy" />
-                </div>
-                <div class="project-info">
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      ))}
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <span class="masthead__title">Design Engineer - Sage Baggott</span>
+    <nav class="nav">
+      <a href="/portfolio" aria-current="page">Work</a>
+      <a href="/overdub">Deep dive - Overdubbing</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="page-head">
+    <p class="eyebrow">Boombox &middot; 2024 - 2025</p>
+    <h1>Generative audio tools,<br>players, and overdubbing</h1>
+    <p class="lede">Design and front end work on Boombox, a collaboration platform for musicians. Below are the AI tools built around Boombot, the desktop and mobile audio players, and the overdub feature on the mobile app. Click any image to see it at full size.</p>
+  </div>
+
+  <!-- 01 -->
+  <section class="section" id="chord-generator">
+    <div class="section-head">
+      <span class="section-index">01</span>
+      <h2>Chord generator</h2>
+      <p class="section-note">Create a progression from a text prompt, play the chords back in a DAW-style MIDI player with different instruments,
+        see an explanation of why the chords were chosen, then refine it in place or export the MIDI.</p>
+    </div>
+    <div class="grid grid--wide">
+      <a class="shot" href="#lb-chord-01"><img src="/images/portfolio-review/Boombox-gen-ai-chord-generator-01.jpg" alt="Chord generator, first screen" loading="lazy" width="2824" height="1964"></a>
+      <a class="shot" href="#lb-chord-02"><img src="/images/portfolio-review/Boombox-gen-ai-chord-generator-02.jpg" alt="Chord generator, second screen" loading="lazy" width="2792" height="1962"></a>
+      <a class="shot" href="#lb-chord-03"><img src="/images/portfolio-review/Boombox-gen-ai-chord-generator-03.jpg" alt="Chord generator result with progression grid and refine prompt" loading="lazy" width="2848" height="1946"></a>
+      <a class="shot" href="#lb-chord-04"><img src="/images/portfolio-review/Boombox-gen-ai-chord-generator-04.jpg" alt="Chord generator, fourth screen" loading="lazy" width="2872" height="1948"></a>
+      <a class="shot" href="#lb-chord-05"><img src="/images/portfolio-review/Boombox-gen-ai-chord-generator-05.jpg" alt="Chord generator, fifth screen" loading="lazy" width="2842" height="1952"></a>
     </div>
   </section>
-  <div id="lightbox" aria-hidden="true">
-    <img id="lightbox-img" src="" alt="" />
+
+  <!-- 02 -->
+  <section class="section" id="sample-generator">
+    <div class="section-head">
+      <span class="section-index">02</span>
+      <h2>Sample generator</h2>
+      <p class="section-note">Write a prompt, get a usable audio sample out. The wait, the preview, and the keep or discard decision each get their own state.</p>
+    </div>
+    <div class="grid grid--wide">
+      <a class="shot" href="#lb-sample-01"><img src="/images/portfolio-review/Boombox-gen-ai-sample-generator-01.jpg" alt="Sample generator prompt screen" loading="lazy" width="2816" height="1958"></a>
+      <a class="shot" href="#lb-sample-02"><img src="/images/portfolio-review/Boombox-gen-ai-sample-generator-02.jpg" alt="Sample generator working state, Boombot is creating your sample" loading="lazy" width="2880" height="1952"></a>
+      <a class="shot" href="#lb-sample-03"><img src="/images/portfolio-review/Boombox-gen-ai-sample-generator-03.jpg" alt="Sample generator result ready to preview and save" loading="lazy" width="2840" height="1954"></a>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="section" id="stem-splitter">
+    <div class="section-head">
+      <span class="section-index">03</span>
+      <h2>Stem splitter</h2>
+      <p class="section-note">Upload a track, separate it into vocals, drums, bass, and other instruments, then audition the stems all together, or one-by-one. Stems are automatically saved to Boombox's servers.</p>
+    </div>
+    <div class="grid grid--wide">
+      <a class="shot" href="#lb-stem-01"><img src="/images/portfolio-review/Boombox-gen-ai-stem-splitter-01.jpg" alt="Stem splitter upload screen" loading="lazy" width="3542" height="1960"></a>
+      <a class="shot" href="#lb-stem-02"><img src="/images/portfolio-review/Boombox-gen-ai-stem-splitter-02.jpg" alt="Stem splitter, second screen" loading="lazy" width="3532" height="1944"></a>
+      <a class="shot" href="#lb-stem-03"><img src="/images/portfolio-review/Boombox-gen-ai-stem-splitter-03.jpg" alt="Stem splitter, third screen" loading="lazy" width="2802" height="1958"></a>
+      <a class="shot" href="#lb-stem-04"><img src="/images/portfolio-review/Boombox-gen-ai-stem-splitter-04.jpg" alt="Stem splitter, fourth screen" loading="lazy" width="2806" height="1954"></a>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="section" id="stem-splitting-video">
+    <div class="section-head">
+      <span class="section-index">04</span>
+      <h2>Stem splitting in motion</h2>
+      <p class="section-note">The loading state for a job that can run close to a minute. I created different animations of the Boombot that are visible while waiting for audio to generate. This one's my favorite, you can see it's working up a sweat!</p>
+    </div>
+    <div class="frame frame--video">
+      <video src="/video/portfolio-review/stem-splitting-boombot.mp4" controls muted playsinline preload="metadata" width="1920" height="212"></video>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="section" id="overdub">
+    <div class="section-head">
+      <span class="section-index">05</span>
+      <h2>Overdub</h2>
+      <p class="section-note">Recording a new part onto an existing track in the Boombox mobile app on a phone. Set the start point, record using headphones with mic or
+        built-in speaker and mic, audition the mix, remix with different levels and/or latency offset, and finally save the new recording and mix to Boombox or share with a collaborator. <a href="/overdub">Read the deep dive</a>.</p>
+    </div>
+    <div class="grid grid--tall">
+      <a class="shot" href="#lb-overdub-02"><img src="/images/portfolio-review/Boombox-overdub-02.png" alt="Overdub track screen with the playhead at zero" loading="lazy" width="1206" height="2622"></a>
+      <a class="shot" href="#lb-overdub-01"><img src="/images/portfolio-review/Boombox-overdub-01.png" alt="Overdub track screen playing through the earpiece receiver" loading="lazy" width="1206" height="2622"></a>
+      <a class="shot" href="#lb-overdub-03"><img src="/images/portfolio-review/Boombox-overdub-03.png" alt="Overdub recording in progress with level meter" loading="lazy" width="1206" height="2622"></a>
+      <a class="shot" href="#lb-overdub-04"><img src="/images/portfolio-review/Boombox-overdub-04.png" alt="Review your recording, two track mix with latency control" loading="lazy" width="1206" height="2622"></a>
+      <a class="shot" href="#lb-overdub-05"><img src="/images/portfolio-review/Boombox-overdub-05.png" alt="Review screen re-mixing after a latency change" loading="lazy" width="1206" height="2622"></a>
+      <a class="shot" href="#lb-overdub-06"><img src="/images/portfolio-review/Boombox-overdub-06.png" alt="Save your recording sheet" loading="lazy" width="1206" height="2622"></a>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="section" id="audio-players">
+    <div class="section-head">
+      <span class="section-index">06</span>
+      <h2>Audio players</h2>
+      <p class="section-note">The desktop audio player is built around the waveform, with versions, timestamped comments, and metadata around it. Using the Wavesurfer.js library,
+        we can allow the user to play the audio and create/move/resize a region to add a timestamped comment. All the audio metadata is easily editable in the screen.
+        The mobile player carries the same model onto a phone, with the waveform scrolling due to reduced space. Additionally, the user can scrub through the audio while viewing a
+      smaller rendering of the entire waveform in the scrub bar, and can press the plus icon to reach the overdubbing screen.</p>
+    </div>
+    <div class="grid grid--single">
+      <a class="shot" href="#lb-player-desktop"><img src="/images/portfolio-review/Boombox-audio-player-desktop.jpg" alt="Desktop audio player with waveform, comments, and track metadata" loading="lazy" width="2852" height="1964"></a>
+    </div>
+    <div class="grid grid--tall is-pair">
+      <a class="shot" href="#lb-player-mobile-01"><img src="/images/portfolio-review/Boombox-audio-player-mobile-01.png" alt="Mobile audio player, first screen" loading="lazy" width="1206" height="2622"></a>
+      <a class="shot" href="#lb-player-mobile-02"><img src="/images/portfolio-review/Boombox-audio-player-mobile-02.png" alt="Mobile audio player, second screen" loading="lazy" width="1206" height="2622"></a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <span>Design Engineer - Sage Baggott</span>
+    <span><a href="/overdub">Deep dive: Overdubbing &rarr;</a></span>
   </div>
+
 </main>
+
+<!-- shadowboxes -->
+
+<div class="lightbox" id="lb-chord-01"><a class="lightbox__scrim" href="#chord-generator" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-gen-ai-chord-generator-01.jpg" alt="Chord generator, first screen"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-player-mobile-02" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-chord-02" aria-label="Next image"></a><a class="lightbox__close" href="#chord-generator">Close</a></div>
+<div class="lightbox" id="lb-chord-02"><a class="lightbox__scrim" href="#chord-generator" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-gen-ai-chord-generator-02.jpg" alt="Chord generator, second screen"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-chord-01" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-chord-03" aria-label="Next image"></a><a class="lightbox__close" href="#chord-generator">Close</a></div>
+<div class="lightbox" id="lb-chord-03"><a class="lightbox__scrim" href="#chord-generator" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-gen-ai-chord-generator-03.jpg" alt="Chord generator result with progression grid and refine prompt"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-chord-02" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-chord-04" aria-label="Next image"></a><a class="lightbox__close" href="#chord-generator">Close</a></div>
+<div class="lightbox" id="lb-chord-04"><a class="lightbox__scrim" href="#chord-generator" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-gen-ai-chord-generator-04.jpg" alt="Chord generator, fourth screen"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-chord-03" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-chord-05" aria-label="Next image"></a><a class="lightbox__close" href="#chord-generator">Close</a></div>
+<div class="lightbox" id="lb-chord-05"><a class="lightbox__scrim" href="#chord-generator" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-gen-ai-chord-generator-05.jpg" alt="Chord generator, fifth screen"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-chord-04" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-sample-01" aria-label="Next image"></a><a class="lightbox__close" href="#chord-generator">Close</a></div>
+
+<div class="lightbox" id="lb-sample-01"><a class="lightbox__scrim" href="#sample-generator" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-gen-ai-sample-generator-01.jpg" alt="Sample generator prompt screen"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-chord-05" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-sample-02" aria-label="Next image"></a><a class="lightbox__close" href="#sample-generator">Close</a></div>
+<div class="lightbox" id="lb-sample-02"><a class="lightbox__scrim" href="#sample-generator" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-gen-ai-sample-generator-02.jpg" alt="Sample generator working state"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-sample-01" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-sample-03" aria-label="Next image"></a><a class="lightbox__close" href="#sample-generator">Close</a></div>
+<div class="lightbox" id="lb-sample-03"><a class="lightbox__scrim" href="#sample-generator" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-gen-ai-sample-generator-03.jpg" alt="Sample generator result ready to preview and save"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-sample-02" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-stem-01" aria-label="Next image"></a><a class="lightbox__close" href="#sample-generator">Close</a></div>
+
+<div class="lightbox" id="lb-stem-01"><a class="lightbox__scrim" href="#stem-splitter" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-gen-ai-stem-splitter-01.jpg" alt="Stem splitter upload screen"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-sample-03" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-stem-02" aria-label="Next image"></a><a class="lightbox__close" href="#stem-splitter">Close</a></div>
+<div class="lightbox" id="lb-stem-02"><a class="lightbox__scrim" href="#stem-splitter" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-gen-ai-stem-splitter-02.jpg" alt="Stem splitter, second screen"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-stem-01" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-stem-03" aria-label="Next image"></a><a class="lightbox__close" href="#stem-splitter">Close</a></div>
+<div class="lightbox" id="lb-stem-03"><a class="lightbox__scrim" href="#stem-splitter" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-gen-ai-stem-splitter-03.jpg" alt="Stem splitter, third screen"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-stem-02" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-stem-04" aria-label="Next image"></a><a class="lightbox__close" href="#stem-splitter">Close</a></div>
+<div class="lightbox" id="lb-stem-04"><a class="lightbox__scrim" href="#stem-splitter" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-gen-ai-stem-splitter-04.jpg" alt="Stem splitter, fourth screen"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-stem-03" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-overdub-02" aria-label="Next image"></a><a class="lightbox__close" href="#stem-splitter">Close</a></div>
+
+<div class="lightbox" id="lb-overdub-02"><a class="lightbox__scrim" href="#overdub" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-overdub-02.png" alt="Overdub track screen with the playhead at zero"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-stem-04" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-overdub-01" aria-label="Next image"></a><a class="lightbox__close" href="#overdub">Close</a></div>
+<div class="lightbox" id="lb-overdub-01"><a class="lightbox__scrim" href="#overdub" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-overdub-01.png" alt="Overdub track screen playing through the earpiece receiver"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-overdub-02" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-overdub-03" aria-label="Next image"></a><a class="lightbox__close" href="#overdub">Close</a></div>
+<div class="lightbox" id="lb-overdub-03"><a class="lightbox__scrim" href="#overdub" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-overdub-03.png" alt="Overdub recording in progress with level meter"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-overdub-01" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-overdub-04" aria-label="Next image"></a><a class="lightbox__close" href="#overdub">Close</a></div>
+<div class="lightbox" id="lb-overdub-04"><a class="lightbox__scrim" href="#overdub" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-overdub-04.png" alt="Review your recording, two track mix with latency control"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-overdub-03" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-overdub-05" aria-label="Next image"></a><a class="lightbox__close" href="#overdub">Close</a></div>
+<div class="lightbox" id="lb-overdub-05"><a class="lightbox__scrim" href="#overdub" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-overdub-05.png" alt="Review screen re-mixing after a latency change"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-overdub-04" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-overdub-06" aria-label="Next image"></a><a class="lightbox__close" href="#overdub">Close</a></div>
+<div class="lightbox" id="lb-overdub-06"><a class="lightbox__scrim" href="#overdub" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-overdub-06.png" alt="Save your recording sheet"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-overdub-05" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-player-desktop" aria-label="Next image"></a><a class="lightbox__close" href="#overdub">Close</a></div>
+
+<div class="lightbox" id="lb-player-desktop"><a class="lightbox__scrim" href="#audio-players" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-audio-player-desktop.jpg" alt="Desktop audio player with waveform, comments, and track metadata"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-overdub-06" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-player-mobile-01" aria-label="Next image"></a><a class="lightbox__close" href="#audio-players">Close</a></div>
+<div class="lightbox" id="lb-player-mobile-01"><a class="lightbox__scrim" href="#audio-players" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-audio-player-mobile-01.png" alt="Mobile audio player, first screen"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-player-desktop" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-player-mobile-02" aria-label="Next image"></a><a class="lightbox__close" href="#audio-players">Close</a></div>
+<div class="lightbox" id="lb-player-mobile-02"><a class="lightbox__scrim" href="#audio-players" aria-label="Close"></a><div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-audio-player-mobile-02.png" alt="Mobile audio player, second screen"></div><a class="lightbox__nav lightbox__nav--prev" href="#lb-player-mobile-01" aria-label="Previous image"></a><a class="lightbox__nav lightbox__nav--next" href="#lb-chord-01" aria-label="Next image"></a><a class="lightbox__close" href="#audio-players">Close</a></div>
+
 </body>
 </html>
-
-<style>
-  .portfolio {
-    padding: 80px 20px;
-    background-color: var(--bg);
-  }
-
-  .category {
-    margin-bottom: 60px;
-  }
-
-  .category-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 8px;
-  }
-
-  .category-description {
-    color: var(--text-muted);
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-
-  .category-grid {
-    display: grid;
-    grid-template-columns: repeat(var(--col-count), 1fr);
-    gap: 20px;
-  }
-
-  .category-grid[data-category="Dubsy"] .project-image {
-      aspect-ratio: 9 / 16;
-  }
-
-  .category-grid[data-category="Drum flyer"] .project-image {
-    aspect-ratio: 12 / 16;
-  }
-
-  .category-grid[data-category="Drum flyer"] {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 900px) {
-    .category-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 540px) {
-    .category-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .category-grid[data-category="Drum flyer"] {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .project-card {
-    background: var(--bg-card);
-    border-radius: 4px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-  }
-
-  .project-card:hover {
-    transform: translateY(-5px);
-  }
-
-  .project-image {
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-  }
-
-  .project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .project-card:hover .project-image img {
-    transform: scale(1.05);
-  }
-
-  .project-info {
-    padding: 24px;
-  }
-
-  .project-info h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: var(--text);
-  }
-
-  .project-info p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  .project-image {
-    cursor: zoom-in;
-  }
-
-  #lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 9999;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-
-  #lightbox-img {
-    width: 80%;
-    max-height: 90vh;
-    object-fit: contain;
-    border-radius: 4px;
-    pointer-events: none;
-  }
-</style>
-
-<script>
-  const lightbox = document.getElementById('lightbox') as HTMLElement;
-  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
-
-  function openLightbox(src: string, alt: string) {
-    lightboxImg.src = src;
-    lightboxImg.alt = alt;
-    lightbox.style.display = 'flex';
-    lightbox.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    lightbox.style.display = 'none';
-    lightbox.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    lightboxImg.src = '';
-  }
-
-  document.querySelectorAll<HTMLElement>('[data-lightbox]').forEach((el) => {
-    el.addEventListener('click', (e) => {
-      e.stopPropagation();
-      openLightbox(el.dataset.lightbox!, el.dataset.alt ?? '');
-    });
-  });
-
-  lightbox.addEventListener('click', closeLightbox);
-</script>

@@ -1,0 +1,198 @@
+---
+import '../styles/portfolio-review.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deep dive: Overdubbing - Design Engineer, Sage Baggott</title>
+  </head>
+  <body>
+
+    <header class="masthead">
+      <div class="wrap masthead__inner">
+        <span class="masthead__title">Design Engineer - Sage Baggott</span>
+        <nav class="nav">
+          <a href="/portfolio">Work</a>
+          <a href="/overdub" aria-current="page">Deep dive - Overdubbing</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+
+      <div class="page-head" id="step-0"> <!-- Not really step 0, but putting the anchor here scrolls the page to the proper spot -->
+        <p class="eyebrow">Boombox mobile &middot; Deep dive</p>
+        <h1>Overdubbing</h1>
+
+        <div class="page-head__body">
+          <div class="frame page-head__media">
+            <a class="shot" href="#lb-overdub-gif">
+            <img src="/video/portfolio-review/overdubbing-workflow.gif" alt="Animated walkthrough of the overdub workflow, from setting the start point through saving the mix" width="558" height="558">
+            </a>
+          </div>
+          <div>
+            <p class="lede">For the last hackathon I participated in at Boombox, I had the idea to add on to our users'
+              ability to make written and audio comments.
+              Overdub lets a musician record a new part straight onto an existing track from their phone, then hear the two
+              together before committing to anything.
+            </p>
+            <p class="lede">
+              I knew this would be a really useful feature for musicians, audio engineers, and music producers to quickly
+              get new ideas down that they could share with collaborators.
+              I hacked together a POC in two days, demo'ed it, and was immediately asked, "When can we see this in the
+              mobile app?". So I got to work recreating it in a way that could be used in production.</p>
+            <p class="lede">
+              Most of the hard parts were not visual. Microphone bleed, audio routing, round trip latency, animating
+              waveforms and audio levels, and optimizing for low re-renders were all issues that had to be dealt with.
+              These are the six states in order, with the thinking behind each.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="steps">
+
+        <article class="step" id="step-1">
+          <a class="shot" href="#lb-overdub-02"><img src="/images/portfolio-review/Boombox-overdub-02.png" alt="Overdub track screen with the playhead at zero" width="1206" height="2622"></a>
+          <span class="step__num">Step 01</span>
+          <h3>Set the starting point</h3>
+          <p>The screen opens on the whole track with the overdub marker at zero. Tapping anywhere on the waveform moves that marker,
+            so someone adding a part to the second chorus does not have to sit through the first two minutes to get there.
+            The marker is a different color from playback position and carries its own timecode label, which means you can confirm the edit
+            by looking at the waveform instead of reading the fine print underneath. The line below the waveform describes what is about to
+            happen in a sentence rather than labeling a control. Light grey text indicates the inputs and outputs for recording.</p>
+        </article>
+
+        <article class="step" id="step-2">
+          <a class="shot" href="#lb-overdub-01"><img src="/images/portfolio-review/Boombox-overdub-01.png" alt="Overdub track screen playing through the earpiece receiver" width="1206" height="2622"></a>
+          <span class="step__num">Step 02</span>
+          <h3>Routing around feedback</h3>
+          <p>Recording with the speaker on means the microphone picks up the backing track and prints it into the take. When no headphones are connected,
+            playback falls back to the earpiece receiver, and when placed near the ear, most of the bleed is avoided. The screen names the output that is live,
+            explains why it was chosen, and says what to physically do about it. All three lines are amber rather than red, because this is a workable state and not an error.
+            The screen also confirms the start point one more time, since the earlier tap happened on a different screen state.</p>
+        </article>
+
+        <article class="step" id="step-3">
+          <a class="shot" href="#lb-overdub-03"><img src="/images/portfolio-review/Boombox-overdub-03.png" alt="Overdub recording in progress with level meter" width="1206" height="2622"></a>
+          <span class="step__num">Step 03</span>
+          <h3>Recording</h3>
+          <p>During a take the interface focuses on recording. Record becomes Stop in the same position, the transport counts up against the fixed start marker,
+            and an SVG level meter sits directly above the button so the performer can see they are actually being recorded. The route line turns red to make it unmistakable
+            that the microphone is recording.</p>
+        </article>
+
+        <article class="step" id="step-4">
+          <a class="shot" href="#lb-overdub-04"><img src="/images/portfolio-review/Boombox-overdub-04.png" alt="Review your recording, two track mix with latency control" width="1206" height="2622"></a>
+          <span class="step__num">Step 04</span>
+          <h3>Review the mix</h3>
+          <p>The recording ends with a two track mix: the backing on top, the new recording below, each with its own volume fader and progress bar.
+            The two are labeled by who made them, so they are never confused at a glance. The re-mixing happens entirely on the phone using TypeScript
+            modules that tie the Expo library together with native code. Re-recording is a normal thing to do here, but it still throws away a take,
+            so making the "Cancel & re-record" button quieter than the "Save" button ensures a deliberate press rather than the obvious next tap.</p>
+        </article>
+
+        <article class="step" id="step-5">
+          <a class="shot" href="#lb-overdub-05"><img src="/images/portfolio-review/Boombox-overdub-05.png" alt="Review screen re-mixing after a latency change" width="1206" height="2622"></a>
+          <span class="step__num">Step 05</span>
+          <h3>Latency adjustment</h3>
+          <p>Every device puts a few milliseconds between hearing the backing track and capturing the voice, and the amount shifts with the headphones and the phone.
+            The latency slider moves the recorded track against the backing so the performer can nudge it until it sits in the pocket. Each change quickly rebuilds the mix,
+            which is done with Expo modules which connect the Expo library with native Swift or Kotlin code.</p>
+        </article>
+
+        <article class="step" id="step-6">
+          <a class="shot" href="#lb-overdub-06"><img src="/images/portfolio-review/Boombox-overdub-06.png" alt="Save your recording sheet" width="1206" height="2622"></a>
+          <span class="step__num">Step 06</span>
+          <h3>Save and share</h3>
+          <p>The save sheet asks for two names because it produces two files. The raw recording stays useful for real production work, and the mix is a preview.
+            Saying that plainly under the toggle keeps the mix from being mistaken for a master later on. Both name fields pre-fill from the source track so nothing has to be typed,
+            and "Save & share" is the primary action, since the most common use case is to send the mix to somebody.</p>
+        </article>
+
+      </div>
+
+      <section class="retro">
+        <div class="retro__col">
+          <h3>Some things that went well</h3>
+          <ul>
+            <li>I came up with a hackathon project that was very well received and turned it into a production feature in a short amount of time.</li>
+            <li>The overall functionality works very well, with the mixing operations happening quickly on-device.</li>
+            <li>Considering the number of actions and animations happening at once, the layout is clean and pretty easy to scan.</li>
+            <li>The UI is snappy and the re-renders are kept to a minimum due to many improvements to the code logic.</li>
+          </ul>
+        </div>
+
+        <div class="retro__col">
+          <h3>Some things I would change</h3>
+          <ul>
+            <li>The playhead isn't draggable, you have to tap on the waveform. It's also difficult to tap at the very beginning, which is why I have the "Overdub from 00:00" link.</li>
+            <li>The affordance of the latency adjustment slider is a bit off. It's hard to see when your finger is dragging, and the increments need to be smaller values.</li>
+            <li>Long titles are truncated and hard to tell apart if similar. I would find ways to minimize that, either with smaller text or different placement.</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="foot">
+        <span>Design Engineer - Sage Baggott</span>
+        <span><a href="/portfolio">&larr; Back to work</a></span>
+      </div>
+
+    </main>
+
+    <!-- shadowboxes -->
+    <div class="lightbox" id="lb-overdub-gif">
+      <a class="lightbox__scrim" href="#step-0" aria-label="Close"></a>
+      <div class="lightbox__stage"><img fetchpriority="low" src="/video/portfolio-review/overdubbing-workflow.gif" alt="Overdub workflow gif animation"></div>
+      <a class="lightbox__nav lightbox__nav--prev" href="#lb-overdub-06" aria-label="Previous image"></a>
+      <a class="lightbox__nav lightbox__nav--next" href="#lb-overdub-02" aria-label="Next image"></a>
+      <a class="lightbox__close" href="#step-0">Close</a>
+    </div>
+    <div class="lightbox" id="lb-overdub-02">
+      <a class="lightbox__scrim" href="#step-1" aria-label="Close"></a>
+      <div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-overdub-02.png" alt="Overdub track screen with the playhead at zero"></div>
+      <a class="lightbox__nav lightbox__nav--prev" href="#lb-overdub-gif" aria-label="Previous image"></a>
+      <a class="lightbox__nav lightbox__nav--next" href="#lb-overdub-01" aria-label="Next image"></a>
+      <a class="lightbox__close" href="#step-1">Close</a>
+    </div>
+    <div class="lightbox" id="lb-overdub-01">
+      <a class="lightbox__scrim" href="#step-2" aria-label="Close"></a>
+      <div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-overdub-01.png" alt="Overdub track screen playing through the earpiece receiver"></div>
+      <a class="lightbox__nav lightbox__nav--prev" href="#lb-overdub-02" aria-label="Previous image"></a>
+      <a class="lightbox__nav lightbox__nav--next" href="#lb-overdub-03" aria-label="Next image"></a>
+      <a class="lightbox__close" href="#step-2">Close</a>
+    </div>
+    <div class="lightbox" id="lb-overdub-03">
+      <a class="lightbox__scrim" href="#step-3" aria-label="Close"></a>
+      <div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-overdub-03.png" alt="Overdub recording in progress with level meter"></div>
+      <a class="lightbox__nav lightbox__nav--prev" href="#lb-overdub-01" aria-label="Previous image"></a>
+      <a class="lightbox__nav lightbox__nav--next" href="#lb-overdub-04" aria-label="Next image"></a>
+      <a class="lightbox__close" href="#step-3">Close</a>
+    </div>
+    <div class="lightbox" id="lb-overdub-04">
+      <a class="lightbox__scrim" href="#step-4" aria-label="Close"></a>
+      <div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-overdub-04.png" alt="Review your recording, two track mix with latency control"></div>
+      <a class="lightbox__nav lightbox__nav--prev" href="#lb-overdub-03" aria-label="Previous image"></a>
+      <a class="lightbox__nav lightbox__nav--next" href="#lb-overdub-05" aria-label="Next image"></a>
+      <a class="lightbox__close" href="#step-4">Close</a>
+    </div>
+    <div class="lightbox" id="lb-overdub-05">
+      <a class="lightbox__scrim" href="#step-5" aria-label="Close"></a>
+      <div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-overdub-05.png" alt="Review screen re-mixing after a latency change"></div>
+      <a class="lightbox__nav lightbox__nav--prev" href="#lb-overdub-04" aria-label="Previous image"></a>
+      <a class="lightbox__nav lightbox__nav--next" href="#lb-overdub-06" aria-label="Next image"></a>
+      <a class="lightbox__close" href="#step-5">Close</a>
+    </div>
+    <div class="lightbox" id="lb-overdub-06">
+      <a class="lightbox__scrim" href="#step-6" aria-label="Close"></a>
+      <div class="lightbox__stage"><img fetchpriority="low" src="/images/portfolio-review/Boombox-overdub-06.png" alt="Save your recording sheet"></div>
+      <a class="lightbox__nav lightbox__nav--prev" href="#lb-overdub-05" aria-label="Previous image"></a>
+      <a class="lightbox__nav lightbox__nav--next" href="#lb-overdub-gif" aria-label="Next image"></a>
+      <a class="lightbox__close" href="#step-6">Close</a>
+    </div>
+
+  </body>
+</html>
